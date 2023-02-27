@@ -1,0 +1,7 @@
+services:
+  laravel-docker:
+    build: . # search for files in current directory (aka .)
+    volumes:
+      - ./laravel-app:/var/www/html # copy files from laravel-app to /var/www/html directory
+    ports:
+      - 9000:80
