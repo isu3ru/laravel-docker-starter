@@ -1,7 +1,26 @@
 services:
-  laravel-docker:
+  apache:
     build: . # search for files in current directory (aka .)
     volumes:
       - ./laravel-app:/var/www/html # copy files from laravel-app to /var/www/html directory
     ports:
-      - 9000:80
+      - 8000:80
+
+  # mysql
+  mysql:
+    image: mysql:5.7 # using mysql 5.7
+    ports:
+      - 3307:3306 # host is 3307, container is 3306
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: fabaits
+      MYSQL_USER: fanbaits
+      MYSQL_PASSWORD: fanbaits
+    volumes:
+      - ./mysql:/var/lib/mysql
+
+  # redis
+  redis:
+    image: redis:alpine # redis for caching
+    ports:
+      - 6370:6379
